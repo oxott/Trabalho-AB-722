@@ -1,4 +1,6 @@
-function [CD,CY,CL,Cl,Cm,Cn] = aero_databank(X,U,aircraft)
+function [CD,CY,CL,Cl,Cm,Cn] = aero_databank(X,U,aircraft, flag, deltaXcg)
+%flag = 0 Padrão
+%flag = 1 -> Letra D)
     CL_0 = 0.308;
     CL_alpha = 0.133;
     CL_q = 16.7;
@@ -41,6 +43,16 @@ function [CD,CY,CL,Cl,Cm,Cn] = aero_databank(X,U,aircraft)
     Cn_r = -0.634;
     Cn_delta_a = 1.5e-4;
     Cn_delta_r = -3.26e-3;
+    if flag == 1
+        %Letra D - 
+        Cm_q = Cm_q - deltaXcg*(Cm_alpha*180/pi - CL_q) - deltaXcg^2*CL_alpha*180/pi;
+        CL_q = CL_q - deltaXcg*(CL_alpha*180/pi); %CL_alpha_rad
+        Cm_it = Cm_it + deltaXcg*CL_it;
+        Cm_delta_e = Cm_delta_e + deltaXcg*CL_delta_e;
+        %Nossas alterações
+        Cm_alpha = Cm_alpha + deltaXcg*CL_alpha;
+        Cm_0 = Cm_0 + deltaXcg*CL_0;
+    end
 
 V = X(1);
 alpha_deg = X(2);

@@ -1,4 +1,4 @@
-figure(5)
+figure
 
 subplot(331)
 plot(T,Y(:,1))
@@ -7,10 +7,13 @@ xlabel('t [s]')
 ylabel('\gamma [deg]')
 
 subplot(332)
+hold on
 plot(T,Y(:,2))
+plot(T,Y(:,3))
 hold all
 xlabel('t [s]')
-ylabel('Thrust [N]')
+ylabel('Thrust Left [N]')
+ylabel('Thrust Right [N]')
 
 subplot(333)
 plot(T,Y(:,4))

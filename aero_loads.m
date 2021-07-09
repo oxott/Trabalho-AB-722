@@ -1,6 +1,6 @@
-function[F_aero_b, M_aero_b] = aero_loads(X, U, aircraft, C_ba)
+function[F_aero_b, M_aero_b] = aero_loads(X, U, aircraft, C_ba, flag, deltaXcg)
    
-[CD,CY,CL,Cl,Cm,Cn] = aero_databank(X,U, aircraft);
+[CD,CY,CL,Cl,Cm,Cn] = aero_databank(X,U, aircraft, flag, deltaXcg);
 
 V = X(1);
 h = X(5);

@@ -1,4 +1,4 @@
-function [Xdot,Y] = dynamics(t, X, U, aircraft)
+function [Xdot,Y] = dynamics(t, X, U, aircraft, flag, deltaXcg)
 
 m = aircraft.m;
 Ixx = aircraft.Ixx;
@@ -52,7 +52,7 @@ omega_b = [p_rad_s q_rad_s r_rad_s]';
 g_v = [0 0 g]';
 g_b = C_bv*g_v;
 
-[F_aero_b, M_aero_b] = aero_loads(X, U, aircraft, C_ba);
+[F_aero_b, M_aero_b] = aero_loads(X, U, aircraft, C_ba, flag, deltaXcg);
 [F_prop_b, M_prop_b, Tl, Tr] = prop_loads(X, U, aircraft);
 
 J_C_b = [
@@ -118,7 +118,7 @@ Xdot = [
     ydot
     ];
 
-[CD,CY,CL,Cl,Cm,Cn] = aero_databank(X,U,aircraft);
+[CD,CY,CL,Cl,Cm,Cn] = aero_databank(X,U,aircraft, flag, deltaXcg);
 
 [~,~,~,a] = ISA(h);
 

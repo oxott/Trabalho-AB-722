@@ -1,4 +1,4 @@
-function [f, X, U, Y] = trim_function(x, trim_par, aircraft)
+function [f, X, U, Y] = trim_function(x, trim_par, aircraft, flag, deltaXcg)
 
 %x = [V alpha_deg q_deg_s theta_deg | phi_deg p_deg_s r_deg_s psi_deg |
 %     throttle_l throttle_r i_t_deg delta_a_deg delta_r_deg]'
@@ -23,7 +23,7 @@ U = [
     x(12:13)
     ];
 
-[Xdot,Y] = dynamics(0,X,U, aircraft);
+[Xdot,Y] = dynamics(0,X,U, aircraft, flag, deltaXcg);
 
 ydot_eq = 0;
 V_eq = trim_par.V;
