@@ -44,7 +44,7 @@ function [CD,CY,CL,Cl,Cm,Cn] = aero_databank(X,U,aircraft, flag, deltaXcg)
     Cn_delta_a = 1.5e-4;
     Cn_delta_r = -3.26e-3;
     if flag == 1
-        %Letra D - 
+        %Letra D - E
         Cm_q = Cm_q - deltaXcg*(Cm_alpha*180/pi - CL_q) - deltaXcg^2*CL_alpha*180/pi;
         CL_q = CL_q - deltaXcg*(CL_alpha*180/pi); %CL_alpha_rad
         Cm_it = Cm_it + deltaXcg*CL_it;
